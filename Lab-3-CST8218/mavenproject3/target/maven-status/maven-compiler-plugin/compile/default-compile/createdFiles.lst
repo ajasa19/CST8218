@@ -1,0 +1,5 @@
+service\ContactFacadeREST.class
+service\AbstractFacade.class
+com\mycompany\mavenproject3\Contact.class
+com\mycompany\mavenproject3\resources\JavaEE8Resource.class
+com\mycompany\mavenproject3\JAXRSConfiguration.class

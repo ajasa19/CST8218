@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Play with React</title>
+        <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+        <script type="application/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+// Obtain the root 
+    const rootElement = document.getElementById('root')
+// Create a ES6 class component 
+    class ContactList extends React.Component {
+// Use the render function to return JSX component 
+        constructor(props) {
+            super(props);
+            this.state = {count: "", contactsstring: "", contacts: []};
+        }
+        callAPI() {
+//insert code
+            fetch("http://192.168.61.128:8080/mavenproject3/resources/com.mycompany.mavenproject3.contact", {
+                headers: {'Accept': 'application/json'}})
+                .then(res => res.json())
+                .then(resjson => this.setState({contacts: resjson}));       
+        }
+        
+        callAPIcount() {
+//insert code
+            fetch("http://192.168.61.128:8080/mavenproject3/resources/com.mycompany.mavenproject3.contact/count")
+                .then(res => res.json())
+                .then(contactData => this.setState({count: contactData}));
+        }
+        componentDidMount() {
+            this.callAPI();
+            this.callAPIcount();
+        }
+        render() {
+            const valuesArray = this.state.contacts;
+            const valuesArrayCount = this.state.count;
+            return (
+                <div className="contact-list">
+                   <h1>Contact List {this.props.name}</h1>
+                        <ul>
+                        <li>count: {this.state.count}</li>
+                        <li>array size: {valuesArray.length} </li>
+                        {valuesArray.map((item, key) => {
+                    return <li key={key}>{item.firstname} {item.lastname} {item.homephone} </li>
+                })} 
+                </ul>
+                </div>
+            );
+        }
+    }
+// Create a function to wrap up your component
+    function App() {
+        return(
+            <div>
+                <ContactList name="Using React!"/>
+            </div>
+            )
+    }
+// Use the ReactDOM.render to show your component on the browser
+    ReactDOM.render(
+        <App />,
+        rootElement
+    )
+</script>
+</body>
+</html>

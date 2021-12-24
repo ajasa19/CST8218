@@ -1,0 +1,11 @@
+1. the colour schemes are diffrent, address book is white, red, and grey while project1 is light blue, blue, and white.
+
+2. the index is diffrent with diffrent title names address book has "Welcome to the Address Book example." while project1 has "Hello from Facelets".
+
+3. The order of columns are diffrent with address book going [is, last name, first name. birthday, etc] while project1 goes [id, birthday, email, firstname, etc].
+
+4. in the "Create New Contact" page the items are listed diffrently and in diffrent orders.
+
+5. in the "Create New Contact" page address book validates all the fields before creating an entity while project1 only validates the id field.
+
+6. New address book entries are given an auto incrmented number while project 1 requires a user inputed id.
